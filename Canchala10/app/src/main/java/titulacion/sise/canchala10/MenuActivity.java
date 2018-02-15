@@ -1,5 +1,6 @@
 package titulacion.sise.canchala10;
 
+import android.net.Uri;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
@@ -17,7 +18,8 @@ import android.view.MenuItem;
 import titulacion.sise.canchala10.fragments.SedeFragment;
 
 public class MenuActivity extends AppCompatActivity
-        implements NavigationView.OnNavigationItemSelectedListener {
+        implements NavigationView.OnNavigationItemSelectedListener,
+        SedeFragment.OnFragmentInteractionListener {
 
     SedeFragment sedeFragment;
     @Override
@@ -109,5 +111,10 @@ public class MenuActivity extends AppCompatActivity
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         drawer.closeDrawer(GravityCompat.START);
         return true;
+    }
+
+    @Override
+    public void onFragmentInteraction(Uri uri) {
+
     }
 }

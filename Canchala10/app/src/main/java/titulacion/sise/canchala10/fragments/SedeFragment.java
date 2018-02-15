@@ -91,15 +91,6 @@ public class SedeFragment extends Fragment {
 
         LlenarSedes();
 
-        AdaptadorSedes adaptadorSedes = new AdaptadorSedes(sedes);
-        recyclerViewSedes.setAdapter(adaptadorSedes);
-
-        adaptadorSedes.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Toast.makeText(getContext(), sedes.get(recyclerViewSedes.getChildAdapterPosition(view)).getId(), Toast.LENGTH_SHORT).show();
-            }
-        });
 
         return vista;
     }
@@ -111,6 +102,16 @@ public class SedeFragment extends Fragment {
                 if(response.isSuccessful()){
                     SedeResponse sedeResponse = response.body();
                     sedes = sedeResponse.getResponse();
+                    AdaptadorSedes adaptadorSedes = new AdaptadorSedes(sedes);
+                    recyclerViewSedes.setAdapter(adaptadorSedes);
+
+                    adaptadorSedes.setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View view) {
+                            Toast.makeText(getContext(), sedes.get(recyclerViewSedes.getChildAdapterPosition(view)).getId(), Toast.LENGTH_SHORT).show();
+                        }
+                    });
+
                 }
             }
 
