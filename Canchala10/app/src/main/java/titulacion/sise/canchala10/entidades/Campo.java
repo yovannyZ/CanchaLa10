@@ -1,0 +1,132 @@
+package titulacion.sise.canchala10.entidades;
+
+import com.google.gson.annotations.Expose;
+import com.google.gson.annotations.SerializedName;
+
+/**
+ * Created by yzeballos on 15/02/2018.
+ */
+
+public class Campo {
+    @SerializedName("id")
+    @Expose
+    private String id;
+    @SerializedName("descripcion")
+    @Expose
+    private String descripcion;
+    @SerializedName("implementos")
+    @Expose
+    private String implementos;
+    @SerializedName("estacionamiento")
+    @Expose
+    private String estacionamiento;
+    @SerializedName("cantidad_jugadores")
+    @Expose
+    private String cantidadJugadores;
+    @SerializedName("vestidores")
+    @Expose
+    private String vestidores;
+    @SerializedName("snack")
+    @Expose
+    private String snack;
+    @SerializedName("imagen")
+    @Expose
+    private String imagen;
+    @SerializedName("id_sede")
+    @Expose
+    private String idSede;
+    @SerializedName("estado")
+    @Expose
+    private String estado;
+    @SerializedName("sede")
+    @Expose
+    private Sede sede;
+
+    public String getId() {
+        return id;
+    }
+
+    public void setId(String id) {
+        this.id = id;
+    }
+
+    public String getDescripcion() {
+        return descripcion;
+    }
+
+    public void setDescripcion(String descripcion) {
+        this.descripcion = descripcion;
+    }
+
+    public String getImplementos() {
+        return implementos;
+    }
+
+    public void setImplementos(String implementos) {
+        this.implementos = implementos;
+    }
+
+    public String getEstacionamiento() {
+        return estacionamiento;
+    }
+
+    public void setEstacionamiento(String estacionamiento) {
+        this.estacionamiento = estacionamiento;
+    }
+
+    public String getCantidadJugadores() {
+        return cantidadJugadores;
+    }
+
+    public void setCantidadJugadores(String cantidadJugadores) {
+        this.cantidadJugadores = cantidadJugadores;
+    }
+
+    public String getVestidores() {
+        return vestidores;
+    }
+
+    public void setVestidores(String vestidores) {
+        this.vestidores = vestidores;
+    }
+
+    public String getSnack() {
+        return snack;
+    }
+
+    public void setSnack(String snack) {
+        this.snack = snack;
+    }
+
+    public String getImagen() {
+        return imagen;
+    }
+
+    public void setImagen(String imagen) {
+        this.imagen = imagen;
+    }
+
+    public String getIdSede() {
+        return idSede;
+    }
+
+    public void setIdSede(String idSede) {
+        this.idSede = idSede;
+    }
+
+    public String getEstado() {
+        return estado;
+    }
+
+    public void setEstado(String estado) {
+        this.estado = estado;
+    }
+
+    public Sede getSede() {
+        return sede;
+    }
+
+    public void setSede(Sede sede) {
+        this.sede = sede;
+    }
+}

@@ -14,6 +14,10 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.TextView;
+
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 
 import titulacion.sise.canchala10.fragments.SedeFragment;
 
@@ -22,6 +26,8 @@ public class MenuActivity extends AppCompatActivity
         SedeFragment.OnFragmentInteractionListener {
 
     SedeFragment sedeFragment;
+    TextView tvCorreo;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -53,6 +59,12 @@ public class MenuActivity extends AppCompatActivity
                 .replace(R.id.contenedor, sedeFragment)
                 .commit();
 
+        View headerView = navigationView.getHeaderView(0);
+        tvCorreo = (TextView)headerView.findViewById(R.id.tvCorreoSesion);
+
+        FirebaseAuth mAuth = FirebaseAuth.getInstance();
+        FirebaseUser currentUser = mAuth.getCurrentUser();
+        tvCorreo.setText(currentUser.getEmail());
     }
 
     @Override

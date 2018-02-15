@@ -2,10 +2,10 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="titulacion.sise.canchala10.fragments.SedeFragment">
+    tools:context="titulacion.sise.canchala10.fragments.CampoFragment">
 
     <android.support.v7.widget.RecyclerView
-        android:id="@+id/recyclerSede"
+        android:id="@+id/recyclerCampo"
         android:layout_width="match_parent"
         android:layout_height="match_parent"/>
 
