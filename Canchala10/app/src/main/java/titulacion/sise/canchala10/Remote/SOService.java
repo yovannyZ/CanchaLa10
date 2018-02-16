@@ -17,4 +17,7 @@ public interface SOService {
 
     @GET("campo")
     Call<CampoResponse> getCampos();
+
+    @GET("sede/{idSede}/campos")
+    Call<CampoResponse> getCamposBySede(@Path("idSede") String idSede);
 }

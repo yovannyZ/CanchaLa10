@@ -13,7 +13,7 @@ class Campo_model extends CI_Model
     public function getAll()
     {
         $db = $this->load->database('default',TRUE);
-        $db->select("id, descripcion,implementos,estacionamiento,cantidad_jugadores,vestidores,snack,imagen,id_sede,estado");
+        $db->select("id, descripcion,cantidad_jugadores,imagen,id_sede,estado");
         $db->from($this->table);
         $db->where('estado',TRUE);
         $query = $db->get();
@@ -33,10 +33,32 @@ class Campo_model extends CI_Model
         }
     }
 
+    public function getAllBySede($idSede){
+        $db = $this->load->database('default',TRUE);
+        $db->select("id, descripcion,cantidad_jugadores,imagen,id_sede,estado");
+        $db->from($this->table);
+        $db->where('estado',TRUE);
+        $db->where('id_sede',$idSede);
+        $query = $db->get();
+        $array = array();
+        if($query->num_rows() > 0)
+        {
+            $campos = $query->result();
+            foreach ($campos as $campo) 
+            {
+                $sede = $this->Sede_model->get($campo->id_sede);
+                $campo->sede =  $sede;
+                $array[] = $campo;
+            }
+
+            return $array;
+        }
+    }
+
     public function get($id)
     {
         $db = $this->load->database('default',TRUE);
-        $db->select("id, descripcion,implementos,estacionamiento,cantidad_jugadores,vestidores,snack,imagen,id_sede,estado");
+        $db->select("id, descripcion,cantidad_jugadores,imagen,id_sede,estado");
         $db->from($this->table);
         $db->where('id',$id);
         $db->where('estado',TRUE);

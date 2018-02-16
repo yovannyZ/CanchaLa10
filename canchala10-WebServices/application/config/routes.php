@@ -78,6 +78,7 @@ $route['api/usuario/(:any)']['delete'] = 'api/usuario/index/$1';
 /*Route sede*/
 $route['api/sede']['get'] = 'api/sede/index';
 $route['api/sede/(:num)']['get'] = 'api/sede/find/$1';
+$route['api/sede/(:num)/campos']['get'] = 'api/campo/getAllBySede/$1';
 $route['api/sede']['post'] = 'api/sede/index';
 $route['api/sede']['put'] = 'api/sede/index';
 $route['api/sede/(:num)']['delete'] = 'api/sede/index/$1';

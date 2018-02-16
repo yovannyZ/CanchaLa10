@@ -3,10 +3,26 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context="titulacion.sise.canchala10.fragments.SedeFragment">
+<LinearLayout
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Sedes"
+        android:gravity="center"
+        android:textStyle="bold"
+        android:textSize="30sp"
+        android:layout_marginBottom="10sp"/>
 
     <android.support.v7.widget.RecyclerView
         android:id="@+id/recyclerSede"
         android:layout_width="match_parent"
         android:layout_height="match_parent"/>
+
+</LinearLayout>
+
 
 </FrameLayout>

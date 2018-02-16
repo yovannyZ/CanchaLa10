@@ -73,7 +73,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 $active_group = 'default';
 $query_builder = TRUE;
 
-$db['default'] = array(
+/*$db['default'] = array(
 	'dsn'	=> '',
 	'hostname' => '69.16.239.116',
 	'username' => 'canchala_dev',
@@ -95,8 +95,8 @@ $db['default'] = array(
 	'save_queries' => TRUE,
 	'port' => '3306'
 	
-);
-/*
+);*/
+
 $db['default'] = array(
 	'dsn'	=> '',
 	'hostname' => 'localhost',
@@ -117,4 +117,4 @@ $db['default'] = array(
 	'stricton' => FALSE,
 	'failover' => array(),
 	'save_queries' => TRUE
-);*/
+);

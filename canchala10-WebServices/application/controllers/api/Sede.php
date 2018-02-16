@@ -9,6 +9,8 @@ class Sede extends \Restserver\Libraries\REST_Controller
         header("Access-Control-Allow-Methods: GET, POST, OPTIONS, PUT, DELETE");
         parent::__construct();
         $this->load->model('Sede_model');
+        $this->load->model('Campo_model');
+        
     }
 
     public function index_get()
@@ -47,6 +49,10 @@ class Sede extends \Restserver\Libraries\REST_Controller
             'direccion' => $this->post('direccion'),
             'url_imagen' => $this->post('url_imagen'),
             'estado' => $this->post('estado'),
+            'implementos' => $this->post('implementos'),
+            'vestidores' => $this->post('vestidores'),
+            'snack' => $this->post('snack'),
+            'estacionamiento' => $this->post('estacionamiento')
             
         );
 
@@ -66,6 +72,10 @@ class Sede extends \Restserver\Libraries\REST_Controller
             'direccion' => $this->put('direccion'),
             'url_imagen' => $this->put('url_imagen'),
             'estado' => $this->put('estado'),
+            'implementos' => $this->post('implementos'),
+            'vestidores' => $this->post('vestidores'),
+            'snack' => $this->post('snack'),
+            'estacionamiento' => $this->post('estacionamiento')
         );
         
         $update = $this->Sede_model->update($data);
@@ -93,5 +103,7 @@ class Sede extends \Restserver\Libraries\REST_Controller
     public function index_options() {
         return $this->response(NULL, 200);
     }
+
+  
 }
 ?>

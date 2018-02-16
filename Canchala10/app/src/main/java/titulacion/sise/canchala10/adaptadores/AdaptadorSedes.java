@@ -13,6 +13,7 @@ import com.squareup.picasso.Picasso;
 import java.util.List;
 
 import titulacion.sise.canchala10.R;
+import titulacion.sise.canchala10.Utils.ApiUtils;
 import titulacion.sise.canchala10.Utils.CircleTransform;
 import titulacion.sise.canchala10.entidades.Sede;
 
@@ -44,7 +45,7 @@ public class AdaptadorSedes extends
 
         holder.tvDireccion.setText(Sedes.get(position).getDireccion());
         holder.tvDescripcion.setText(Sedes.get(position).getDescripcion());
-        Picasso.with(context).load("http://canchala10.com/uploads/" + Sedes.get(position).getUrlImagen()).transform(new CircleTransform(100,10)).into(holder.ivImagen);
+        Picasso.with(context).load(ApiUtils.imgUrl + Sedes.get(position).getUrlImagen()).transform(new CircleTransform(100,10)).into(holder.ivImagen);
         //holder.ivImagen.setText(Sedes.get(position).getDescripcion());
 
     }

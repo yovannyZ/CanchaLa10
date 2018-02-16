@@ -19,13 +19,18 @@ import android.widget.TextView;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 
+import titulacion.sise.canchala10.entidades.Sede;
+import titulacion.sise.canchala10.fragments.CampoFragment;
 import titulacion.sise.canchala10.fragments.SedeFragment;
+import titulacion.sise.canchala10.interfaces.IComunicaFragment;
 
 public class MenuActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener,
-        SedeFragment.OnFragmentInteractionListener {
+        SedeFragment.OnFragmentInteractionListener, CampoFragment.OnFragmentInteractionListener, IComunicaFragment {
 
     SedeFragment sedeFragment;
+    CampoFragment campoFragment;
+
     TextView tvCorreo;
 
     @Override
@@ -104,7 +109,7 @@ public class MenuActivity extends AppCompatActivity
     public boolean onNavigationItemSelected(MenuItem item) {
         // Handle navigation view item clicks here.
         int id = item.getItemId();
-        FragmentManager fragmentManager = getSupportFragmentManager();
+
 
         if (id == R.id.nav_camera) {
             // Handle the camera action
@@ -128,5 +133,20 @@ public class MenuActivity extends AppCompatActivity
     @Override
     public void onFragmentInteraction(Uri uri) {
 
+    }
+
+    @Override
+    public void enviarSede(Sede sede) {
+        campoFragment = new CampoFragment();
+        Bundle bundleEnvio = new Bundle();
+        bundleEnvio.putSerializable("sede", sede);
+        campoFragment.setArguments(bundleEnvio);
+
+        //Cargar el fragment en el activity
+        getSupportFragmentManager()
+                .beginTransaction()
+                .replace(R.id.contenedor, campoFragment)
+                .addToBackStack(null)
+                .commit();
     }
 }

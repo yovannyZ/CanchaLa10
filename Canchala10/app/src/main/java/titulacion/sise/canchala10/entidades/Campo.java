@@ -14,21 +14,9 @@ public class Campo {
     @SerializedName("descripcion")
     @Expose
     private String descripcion;
-    @SerializedName("implementos")
-    @Expose
-    private String implementos;
-    @SerializedName("estacionamiento")
-    @Expose
-    private String estacionamiento;
     @SerializedName("cantidad_jugadores")
     @Expose
     private String cantidadJugadores;
-    @SerializedName("vestidores")
-    @Expose
-    private String vestidores;
-    @SerializedName("snack")
-    @Expose
-    private String snack;
     @SerializedName("imagen")
     @Expose
     private String imagen;
@@ -58,45 +46,11 @@ public class Campo {
         this.descripcion = descripcion;
     }
 
-    public String getImplementos() {
-        return implementos;
-    }
-
-    public void setImplementos(String implementos) {
-        this.implementos = implementos;
-    }
-
-    public String getEstacionamiento() {
-        return estacionamiento;
-    }
-
-    public void setEstacionamiento(String estacionamiento) {
-        this.estacionamiento = estacionamiento;
-    }
-
     public String getCantidadJugadores() {
         return cantidadJugadores;
     }
 
-    public void setCantidadJugadores(String cantidadJugadores) {
-        this.cantidadJugadores = cantidadJugadores;
-    }
-
-    public String getVestidores() {
-        return vestidores;
-    }
-
-    public void setVestidores(String vestidores) {
-        this.vestidores = vestidores;
-    }
-
-    public String getSnack() {
-        return snack;
-    }
-
-    public void setSnack(String snack) {
-        this.snack = snack;
-    }
+    public void setCantidadJugadores(String cantidadJugadores) { this.cantidadJugadores = cantidadJugadores; }
 
     public String getImagen() {
         return imagen;

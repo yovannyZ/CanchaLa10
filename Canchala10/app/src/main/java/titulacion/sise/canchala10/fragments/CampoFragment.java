@@ -4,11 +4,27 @@ import android.content.Context;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.TextView;
+import android.widget.Toast;
 
+import java.util.ArrayList;
+import java.util.List;
+
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 import titulacion.sise.canchala10.R;
+import titulacion.sise.canchala10.Remote.Data.CampoResponse;
+import titulacion.sise.canchala10.Remote.SOService;
+import titulacion.sise.canchala10.Utils.ApiUtils;
+import titulacion.sise.canchala10.adaptadores.AdaptadorCampos;
+import titulacion.sise.canchala10.entidades.Campo;
+import titulacion.sise.canchala10.entidades.Sede;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -29,6 +45,15 @@ public class CampoFragment extends Fragment {
     private String mParam2;
 
     private OnFragmentInteractionListener mListener;
+
+    TextView tvImplementos ;
+    TextView tvVestidores ;
+    TextView tvSnack ;
+    TextView tvEstacionamiento ;
+    TextView tvSede ;
+    List<Campo> campos;
+    RecyclerView recyclerViewCampos;
+    SOService soService;
 
     public CampoFragment() {
         // Required empty public constructor
@@ -64,9 +89,69 @@ public class CampoFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_campo, container, false);
+        View vista = inflater.inflate(R.layout.fragment_campo, container, false);
+
+        tvImplementos = (TextView)vista.findViewById(R.id.tvImplementos);
+        tvEstacionamiento = (TextView)vista.findViewById(R.id.tvEstacionamiento);
+        tvSnack = (TextView)vista.findViewById(R.id.tvSnack);
+        tvVestidores = (TextView)vista.findViewById(R.id.tvVestidores);
+        tvSede = (TextView)vista.findViewById(R.id.tvSede);
+
+        Bundle bundleSede = getArguments();
+        Sede sede = null;
+
+        if (bundleSede != null) {
+            sede = (Sede) bundleSede.getSerializable("sede");
+            tvImplementos.setText(sede.getImplementos());
+            tvEstacionamiento.setText(sede.getEstacionamiento());
+            tvSnack.setText(sede.getSnack());
+            tvVestidores.setText(sede.getVestidores());
+            tvSede.setText(sede.getDescripcion());
+
+        }
+
+        campos = new ArrayList<Campo>();
+        recyclerViewCampos = (RecyclerView) vista.findViewById(R.id.recyclerCampo);
+        recyclerViewCampos.setLayoutManager(new LinearLayoutManager(getContext()));
+        soService = ApiUtils.getSOService();
+        LlenarCampos(sede.getId());
+        return vista;
     }
+
+    private void LlenarCampos(String idSede) {
+        soService.getCamposBySede(idSede).enqueue(new Callback<CampoResponse>() {
+            @Override
+            public void onResponse(Call<CampoResponse> call, Response<CampoResponse> response) {
+                if(response.isSuccessful()){
+                    CampoResponse campoResponse = response.body();
+
+                    if(campoResponse.getStatus()){
+                        campos = campoResponse.getResponse();
+
+                        AdaptadorCampos adaptadorCampos = new AdaptadorCampos(campos);
+                        recyclerViewCampos.setAdapter(adaptadorCampos);
+
+                        adaptadorCampos.setOnClickListener(new View.OnClickListener() {
+                            @Override
+                            public void onClick(View view) {
+                                Toast.makeText(getContext(), campos.get(recyclerViewCampos.getChildAdapterPosition(view))
+                                        .getDescripcion(), Toast.LENGTH_SHORT).show();
+                                //iComunicaFragment.enviarSede(sedes.get(recyclerViewSedes.getChildAdapterPosition(view)));
+                            }
+                        });
+                    }
+                }
+            }
+
+            @Override
+            public void onFailure(Call<CampoResponse> call, Throwable t) {
+                Toast.makeText(getContext(), "Error : " + t.getLocalizedMessage(), Toast.LENGTH_SHORT).show();
+            }
+        });
+    }
+
+
+
 
     // TODO: Rename method, update argument and hook method into UI event
     public void onButtonPressed(Uri uri) {

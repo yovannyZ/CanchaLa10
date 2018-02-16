@@ -1,5 +1,6 @@
 package titulacion.sise.canchala10.fragments;
 
+import android.app.Activity;
 import android.content.Context;
 import android.net.Uri;
 import android.os.Bundle;
@@ -24,6 +25,7 @@ import titulacion.sise.canchala10.Remote.SOService;
 import titulacion.sise.canchala10.Utils.ApiUtils;
 import titulacion.sise.canchala10.adaptadores.AdaptadorSedes;
 import titulacion.sise.canchala10.entidades.Sede;
+import titulacion.sise.canchala10.interfaces.IComunicaFragment;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -49,6 +51,8 @@ public class SedeFragment extends Fragment {
     RecyclerView recyclerViewSedes;
     SOService soService;
     private GridLayoutManager glm;
+    Activity activity;
+    IComunicaFragment iComunicaFragment;
 
     public SedeFragment() {
         // Required empty public constructor
@@ -114,7 +118,7 @@ public class SedeFragment extends Fragment {
                     adaptadorSedes.setOnClickListener(new View.OnClickListener() {
                         @Override
                         public void onClick(View view) {
-                            Toast.makeText(getContext(), sedes.get(recyclerViewSedes.getChildAdapterPosition(view)).getId(), Toast.LENGTH_SHORT).show();
+                            iComunicaFragment.enviarSede(sedes.get(recyclerViewSedes.getChildAdapterPosition(view)));
                         }
                     });
 
@@ -138,6 +142,12 @@ public class SedeFragment extends Fragment {
     @Override
     public void onAttach(Context context) {
         super.onAttach(context);
+
+        if(context instanceof Activity){
+            this.activity =(Activity) context;
+            iComunicaFragment =(IComunicaFragment) this.activity;
+        }
+
         if (context instanceof OnFragmentInteractionListener) {
             mListener = (OnFragmentInteractionListener) context;
         } else {

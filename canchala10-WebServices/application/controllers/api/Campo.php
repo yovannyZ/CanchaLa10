@@ -44,11 +44,7 @@ class Campo extends \Restserver\Libraries\REST_Controller
         $data = array(
 			'id' =>  $this->post('id'),
             'descripcion' => $this->post('descripcion'),
-            'implementos' => $this->post('implementos'),
-            'estacionamiento' => $this->post('estacionamiento'),
             'cantidad_jugadores' => $this->post('cantidad_jugadores'),
-            'vestidores' => $this->post('vestidores'),
-            'snack' => $this->post('snack'),
             'imagen' => $this->post('imagen'),
             'id_sede' => $this->post('id_sede'),
             'estado' => $this->post('estado')      
@@ -65,16 +61,12 @@ class Campo extends \Restserver\Libraries\REST_Controller
     public function index_put()
     {
         $data = array(
-			'id' =>  $this->put('id'),
-            'descripcion' => $this->put('descripcion'),
-            'implementos' => $this->put('implementos'),
-            'estacionamiento' => $this->put('estacionamiento'),
-            'cantidad_jugadores' => $this->put('cantidad_jugadores'),
-            'vestidores' => $this->put('vestidores'),
-            'snack' => $this->put('snack'),
-            'imagen' => $this->put('imagen'),
-            'id_sede' => $this->put('id_sede'),
-            'estado' => $this->put('estado') 
+			'id' =>  $this->post('id'),
+            'descripcion' => $this->post('descripcion'),
+            'cantidad_jugadores' => $this->post('cantidad_jugadores'),
+            'imagen' => $this->post('imagen'),
+            'id_sede' => $this->post('id_sede'),
+            'estado' => $this->post('estado') 
         );
         
         $update = $this->Campo_model->update($data);
@@ -101,6 +93,20 @@ class Campo extends \Restserver\Libraries\REST_Controller
 
     public function index_options() {
         return $this->response(NULL, 200);
+    }
+
+    public function getAllBySede_get($idSede)
+    {
+        $data = $this->Campo_model->getAllBySede($idSede);
+
+        if($data)
+        {
+            $this->response(array('status' => true, 'response' => $data), 200);
+        }
+        else
+        {
+            $this->response(array('status' => false, 'response' => $data), 200);
+        }   
     }
 }
 ?>
