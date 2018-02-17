@@ -17,7 +17,7 @@
         android:textAppearance="?android:attr/textAppearanceLarge"
         android:textColor="@android:color/black"
         android:text="08:00 - 09:00"
-        android:textSize="6sp"
+        android:textSize="10sp"
         android:layout_marginBottom="1.5sp"/>
 
 </LinearLayout>
